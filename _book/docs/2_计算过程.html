@@ -1,0 +1,532 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>计算过程 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3_高阶过程.html" />
+    
+    
+    <link rel="prev" href="1_Lisp概览.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="1_Lisp概览.html">
+            
+                <a href="1_Lisp概览.html">
+            
+                    
+                    Lisp概览
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="2_计算过程.html">
+            
+                <a href="2_计算过程.html">
+            
+                    
+                    计算过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="3_高阶过程.html">
+            
+                <a href="3_高阶过程.html">
+            
+                    
+                    高阶过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >计算过程</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;"><b></b>&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;</a></li><ul><li><span class="title-icon "></span><a href="#&#x5199;&#x4E00;&#x4E2A;&#x52A0;&#x6CD5;&#x7684;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#xFF1A;"><b></b>&#x5199;&#x4E00;&#x4E2A;&#x52A0;&#x6CD5;&#x7684;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#xFF1A;</a></li><li><span class="title-icon "></span><a href="#&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#xFF1A;"><b></b>&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#xFF1A;</a></li><li><span class="title-icon "></span><a href="#&#x5C06;&#x4E24;&#x79CD;&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x8FDB;&#x884C;&#x5BF9;&#x6BD4;"><b></b>&#x5C06;&#x4E24;&#x79CD;&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x8FDB;&#x884C;&#x5BF9;&#x6BD4;</a></li><li><span class="title-icon "></span><a href="#&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#x5217;-&#x7EE7;&#x7EED;&#x63A2;&#x8BA8;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;"><b></b>&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#x5217; (&#x7EE7;&#x7EED;&#x63A2;&#x8BA8;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;)</a></li></ul></ul></div><a href="#&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;"><a name="&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;</h1>
+<p><strong>Tips: &#x6240;&#x6709;&#x7684;&#x56FE;&#x793A;&#x7684;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;&#x4E0D;&#x662F;&#x975E;&#x5E38;&#x4E25;&#x8C28;</strong></p>
+<p>&#x5B66;&#x4F1A;&#x5FFD;&#x7565;&#x7EC6;&#x8282;&#xFF0C;&#x7406;&#x89E3;&#x590D;&#x6742;&#x4E8B;&#x7269;&#x7684;&#x5173;&#x952E;&#x662F;&#xFF0C;&#x907F;&#x514D;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x89C2;&#x5BDF;&#x3001;&#x8BA1;&#x7B97;&#x548C;&#x601D;&#x8003;&#x3002;</p>
+<pre><code class="lang-lisp"><span class="hljs-comment">; &#x6C42;&#x4E24;&#x4E2A;&#x6570;&#x7684;&#x5E73;&#x65B9;&#x548C;</span>
+
+(<span class="hljs-name">define</span> (<span class="hljs-name">sos</span> x y)
+    (<span class="hljs-name">+</span> (<span class="hljs-name">square</span> x) (<span class="hljs-name">square</span> y)))
+
+(<span class="hljs-name">define</span> (<span class="hljs-name">square</span> x) (<span class="hljs-name">*</span> x x))
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x6765;&#x770B;&#x4E0B;&#x5BF9; (sos 3 4) &#x7684;&#x6C42;&#x548C;&#x8FC7;&#x7A0B;&#xFF0C;&#x8FC7;&#x7A0B;&#x5E76;&#x4E0D;&#x5B8C;&#x6574;&#xFF0C;&#x6BD4;&#x5982;&#x5FFD;&#x7565;&#x4E86; &#x4E58;&#x6CD5;<code>*</code> &#x7B49;&#x8FD0;&#x7B97;&#x7B26;&#x7684;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;&#x3002;</p>
+<div class="mermaid">
+graph TD;
+A[&quot;(sos 3 4)&quot;] --&gt; B[&quot;(+ (square 3) (square 4))&quot;];
+B --&gt; C[&quot;(+ (square 3) (* 4 4))&quot;];
+C --&gt; D[&quot;(+ (square 3) 16)&quot;];
+D --&gt; E[&quot;(+ (* 3 3) 16)&quot;];
+E --&gt; F[&quot;(+ 9 16)&quot;];
+F --&gt; 25
+</div>
+
+<p>&#x4E0A;&#x9762;&#x662F;<strong>&#x5E94;&#x7528;&#x4EE3;&#x6362;&#x6A21;&#x578B;</strong>&#x7684;&#x57FA;&#x672C;&#x65B9;&#x6CD5;&#x3002;
+<strong>Tips&#xFF1A;</strong> <strong>&#x4EE3;&#x6362;&#x6A21;&#x578B;</strong>&#x5E76;&#x4E0D;&#x80FD;&#x51C6;&#x786E;&#x63CF;&#x8FF0;&#x8BA1;&#x7B97;&#x673A;&#x5B9E;&#x9645;&#x7684;&#x8FD0;&#x884C;&#x65B9;&#x5F0F;&#x3002;</p>
+<h2 id="&#x5199;&#x4E00;&#x4E2A;&#x52A0;&#x6CD5;&#x7684;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#xFF1A;"><a name="&#x5199;&#x4E00;&#x4E2A;&#x52A0;&#x6CD5;&#x7684;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#&#x5199;&#x4E00;&#x4E2A;&#x52A0;&#x6CD5;&#x7684;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5199;&#x4E00;&#x4E2A;&#x52A0;&#x6CD5;&#x7684;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#xFF1A;</h2>
+<pre><code class="lang-lisp"><span class="hljs-comment">; &#x8FD9;&#x4E2A;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x76F8;&#x5F53;&#x4E8E;&#xFF0C;&#x6709;&#x4E24;&#x5806;&#x5F39;&#x73E0; X &#x548C; Y</span>
+<span class="hljs-comment">; &#x4ECE; X &#x53D6;&#x4E00;&#x4E2A;&#x5F39;&#x73E0;&#xFF0C;&#x653E;&#x8FDB; Y </span>
+<span class="hljs-comment">; &#x5F53; X &#x53D6;&#x5230; 0 &#x65F6;&#xFF0C;&#x90A3;&#x4E48; Y &#x5C31;&#x662F;&#x5168;&#x90E8;&#x7684;&#x5F39;&#x73E0;</span>
+
+(<span class="hljs-name">define</span> (<span class="hljs-name">+</span> x y )
+  (<span class="hljs-name">if</span> (<span class="hljs-name">=</span> x <span class="hljs-number">0</span>)
+    y
+    (<span class="hljs-name">+</span> (<span class="hljs-name">-1+</span> x) (<span class="hljs-number">1</span>+ y))))
+</code></pre>
+<p>&#x6839;&#x636E;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x63CF;&#x8FF0;&#x4E0B; <code>(+ 3 4)</code> &#x7684;&#x8FC7;&#x7A0B; (&#x4F1A;&#x7701;&#x7565;&#x4E00;&#x4E9B;&#x6B65;&#x9AA4;)&#x3002;</p>
+<div class="mermaid">
+graph TD
+A --&gt; E
+E --&gt; I
+I --&gt; K
+
+subgraph four
+K[&quot;(+ 0 7)&quot;] --&gt; L{&quot;(= 0 0)&quot;}
+L --&gt; |true| M[&quot;7&quot;]
+end
+
+subgraph three
+I[&quot;(+ 1 6)&quot;] --&gt; |&quot;...&quot;| J[&quot;(+ 0 7)&quot;]
+J --&gt; I
+end
+
+subgraph two
+E[&quot;(+ 2 5)&quot;] --&gt; F{&quot;(= 2 0)&quot;}
+F --&gt; |false| G[&quot;+ (-1+ 2) (1+ 5))&quot;]
+G --&gt; H[&quot;(+ 1 6)&quot;]
+H --&gt; E
+end
+
+subgraph one
+A[&quot;(+ 3 4)&quot;] --&gt; B{&quot;(= 3 0)&quot;}
+B --&gt; |false| C[&quot;(+ (-1+ 3) (1+ 4))&quot;]
+C --&gt; D[&quot;(+ 2 5)&quot;]
+D --&gt; A
+end
+
+</div>
+
+<p>&#x5C06;&#x4E0A;&#x9762;&#x7684;&#x8FC7;&#x7A0B;&#x8FDB;&#x884C;&#x7B80;&#x5316;</p>
+<div class="mermaid">
+graph TD
+AA[&quot;(+ 3 4)&quot;] --&gt; BB[&quot;(+ 2 5)&quot;]
+BB --&gt; CC[&quot;(+ 1 6)&quot;]
+CC --&gt; DD[&quot;(+ 0 7)&quot;]
+DD --&gt; EE[7]
+
+</div>
+
+<h2 id="&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#xFF1A;"><a name="&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#xFF1A;</h2>
+<pre><code class="lang-lisp">(<span class="hljs-name">define</span> (<span class="hljs-name">+</span> x y)
+  (<span class="hljs-name">if</span> (<span class="hljs-name">=</span> x <span class="hljs-number">0</span>)
+    y
+    (<span class="hljs-number">1</span>+ (<span class="hljs-name">+</span> (<span class="hljs-name">-1+</span> x) y))))
+</code></pre>
+<p>&#x6839;&#x636E;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x63CF;&#x8FF0;&#x4E0B; <code>(+ 3 4)</code> &#x7684;&#x8FC7;&#x7A0B; (&#x4F1A;&#x7701;&#x7565;&#x4E00;&#x4E9B;&#x6B65;&#x9AA4;)&#x3002;</p>
+<div class="mermaid">
+graph TD
+
+D --&gt; E
+K --&gt; L
+S --&gt; T
+
+
+U --&gt; AA
+V --&gt; AA
+W --&gt; AA
+subgraph four
+T[&quot;(1+ (1+ (1+ (+ 0 4))))&quot;] --&gt; U[&quot;(1+ _)&quot;]
+T --&gt; V[&quot;(1+ _)&quot;]
+T --&gt; W[&quot;(1+ _)&quot;]
+T --&gt; X[&quot;(+ 0 4)&quot;]
+X --&gt; Y{&quot;(= 0 0)&quot;}
+Y --&gt; |ture| Z[4]
+Z --&gt; AA[&quot;(1+ (1+ (1+ 4)))&quot;]
+AA --&gt; BB[&quot;(1+ (1+ 5))&quot;]
+BB --&gt; CC[&quot;(1+ 6)&quot;]
+CC --&gt; DD[7]
+end
+
+M --&gt; S
+N --&gt; S
+subgraph three
+L[&quot;(1+ (1+ (+ 1 4)))&quot;] --&gt; M[&quot;(1+ _)&quot;]
+L --&gt; N[&quot;(1+ _)&quot;]
+L --&gt; O[&quot;(+ 1 4)&quot;]
+O --&gt; P{&quot;(= 1 0)&quot;}
+P --&gt; |false| Q[&quot;(1+ (+ (-1+ 1) 4))&quot;]
+Q --&gt; R[&quot;(1+ (+ 0 4))&quot;]
+R --&gt; S[&quot;(1+ (1+ (1+ (+ 0 4))))&quot;]
+end
+
+F --&gt; K
+subgraph two
+E[&quot;(1+ (+ 2 4)&quot;] --&gt; F[&quot;(1 _)&quot;]
+E --&gt; G[&quot;(+ 2 4)&quot;]
+G --&gt; H{&quot;(= 2 0)&quot;}
+H --&gt; |false| I[&quot;(1+ (+ (-1+ 2) 4))&quot;]
+I --&gt; J[&quot;(1+ (+ 1 4))&quot;]
+J --&gt; K[&quot;(1+ (1+ (+ 1 4)))&quot;]
+end
+
+subgraph one
+A[&quot;(+ 3 4)&quot;] --&gt; B{&quot;(= 3 0)&quot;}
+B --&gt; |false| C[&quot;(1+ (+ (-1+ 3) 4))&quot;]
+C --&gt; D[&quot;(1+ (+ 2 4))&quot;]
+end
+</div>
+
+<p>&#x5C06;&#x4E0A;&#x9762;&#x7684;&#x8FC7;&#x7A0B;&#x8FDB;&#x884C;&#x7B80;&#x5316;</p>
+<div class="mermaid">
+graph TD;
+A[&quot;(+ 3 4)&quot;] --&gt; B[&quot;(1+ (+ 2 4))&quot;]
+B --&gt; C[&quot;(1+ (1+ (1+ 4)))&quot;]
+C --&gt; D[&quot;(1+ (1+ (1+ (+ 0 4))))&quot;]
+D --&gt; E[&quot;(1+ (1+ (1+ 4))&quot;]
+E --&gt; F[&quot;(1+ (1+ 5))&quot;]
+F --&gt; G[&quot;(1+ 6)&quot;]
+G --&gt; H[7]
+</div>
+
+<h2 id="&#x5C06;&#x4E24;&#x79CD;&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x8FDB;&#x884C;&#x5BF9;&#x6BD4;"><a name="&#x5C06;&#x4E24;&#x79CD;&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x8FDB;&#x884C;&#x5BF9;&#x6BD4;" class="anchor-navigation-ex-anchor" href="#&#x5C06;&#x4E24;&#x79CD;&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x8FDB;&#x884C;&#x5BF9;&#x6BD4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5C06;&#x4E24;&#x79CD;&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x8FDB;&#x884C;&#x5BF9;&#x6BD4;</h2>
+<div class="mermaid">
+graph TD
+
+subgraph The second
+A[&quot;(+ 3 4)&quot;] --&gt; B[&quot;(1+ (+ 2 4))&quot;]
+B --&gt; C[&quot;(1+ (1+ (1+ 4)))&quot;]
+C --&gt; D[&quot;(1+ (1+ (1+ (+ 0 4))))&quot;]
+D --&gt; E[&quot;(1+ (1+ (1+ 4))&quot;]
+E --&gt; F[&quot;(1+ (1+ 5))&quot;]
+F --&gt; G[&quot;(1+ 6)&quot;]
+G --&gt; H[7]
+end
+
+subgraph The first
+AA[&quot;(+ 3 4)&quot;] --&gt; BB[&quot;(+ 2 5)&quot;]
+BB --&gt; CC[&quot;(+ 1 6)&quot;]
+CC --&gt; DD[&quot;(+ 0 7)&quot;]
+DD --&gt; EE[7]
+end
+
+
+</div>
+
+<p>&#x4E0A;&#x9762;&#x4E5F;&#x5C31;&#x662F;<strong>&#x8FED;&#x4EE3;</strong>&#x548C;<strong>&#x9012;&#x5F52;</strong>&#x7684;&#x533A;&#x5206;&#x3002;</p>
+<h2 id="&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#x5217;-&#x7EE7;&#x7EED;&#x63A2;&#x8BA8;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;"><a name="&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#x5217;-&#x7EE7;&#x7EED;&#x63A2;&#x8BA8;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#x5217;-&#x7EE7;&#x7EED;&#x63A2;&#x8BA8;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#x5217; (&#x7EE7;&#x7EED;&#x63A2;&#x8BA8;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;)</h2>
+<p>&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#xFF0C;&#x4F8B;&#x5B50;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x3002;</p>
+<div class="mermaid">
+graph LR
+
+subgraph index
+AA[0] --&gt; BB[1] 
+BB --&gt; CC[2]
+CC --&gt; DD[3]
+DD --&gt; EE[4]
+EE --&gt; FF[5]
+FF --&gt; GG[6]
+GG --&gt; HH[7]
+HH --&gt; II[8]
+II --&gt; JJ[9]
+JJ --&gt; KK[10]
+end
+
+subgraph num
+A[0] --&gt; B[1] 
+B --&gt; C[1]
+C --&gt; D[2]
+D --&gt; E[3]
+E --&gt; F[5]
+F --&gt; G[8]
+G --&gt; H[13]
+H --&gt; I[21]
+I --&gt; J[34]
+J --&gt; K[55]
+end
+
+</div>
+
+<p>&#x7528;&#x4EE3;&#x7801;&#x5199;&#x51FA;&#x6765;&#xFF1A;</p>
+<pre><code class="lang-lisp">(<span class="hljs-name">define</span> (<span class="hljs-name">fib</span> n)
+    (<span class="hljs-name">if</span> (<span class="hljs-name">&lt;</span> n <span class="hljs-number">2</span>)
+        n
+        (<span class="hljs-name">+</span> (<span class="hljs-name">fib</span> (<span class="hljs-name">-</span> n <span class="hljs-number">1</span>))
+           (<span class="hljs-name">fib</span> (<span class="hljs-name">-</span> n <span class="hljs-number">2</span>)))))
+</code></pre>
+<p>&#x5199;&#x51FA; (fib 4) &#x7684;&#x7B80;&#x5316;&#x7684;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;&#xFF1A;</p>
+<div class="mermaid">
+graph TD
+
+A[&quot;fib 4&quot;] --&gt; B[&quot;fib 3&quot;]
+A --&gt; C[&quot;fib 2&quot;]
+
+B --&gt; D[&quot;fib 2&quot;]
+B --&gt; E[&quot;fib 1&quot;]
+
+D --&gt; F[&quot;fib 1&quot;]
+D --&gt; G[&quot;fib 0&quot;]
+
+C --&gt; H[&quot;fib 1&quot;]
+C --&gt; I[&quot;fib 0&quot;]
+
+F --&gt; J[1]
+G --&gt; K[0]
+
+E --&gt; L[1]
+
+H --&gt; M[1]
+I --&gt; N[0]
+
+</div>
+
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4E0A;&#x9762;&#x7684;&#x6C42;&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#x5217;&#x7684;&#x7B97;&#x6CD5;&#x662F;&#x5F88;&#x7CDF;&#x7CD5;&#x7684;&#xFF0C;&#x4F8B;&#x5982;&#x4E0A;&#x56FE; <code>fib 2</code> &#x88AB;&#x8BA1;&#x7B97;&#x4E86;&#x4E24;&#x6B21;&#x3002;</p>
+<p>&#x5047;&#x8BBE;&#x6211;&#x8981;&#x6C42; <code>fib 5</code> &#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48; <code>fib 3</code> &#x4F1A;&#x88AB;&#x91CD;&#x590D;&#x8BA1;&#x7B97;&#xFF0C;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x5448;&#x6307;&#x6570;&#x589E;&#x957F;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1_Lisp概览.html" class="navigation navigation-prev " aria-label="Previous page: Lisp概览">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3_高阶过程.html" class="navigation navigation-next " aria-label="Next page: 高阶过程">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"计算过程","level":"1.3","depth":1,"next":{"title":"高阶过程","level":"1.4","depth":1,"path":"docs/3_高阶过程.md","ref":"docs/3_高阶过程.md","articles":[]},"previous":{"title":"Lisp概览","level":"1.2","depth":1,"path":"docs/1_Lisp概览.md","ref":"docs/1_Lisp概览.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchor-navigation-ex","mermaid-gb3","katex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"docs/2_计算过程.md","mtime":"2020-01-21T17:11:19.264Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-21T17:19:45.610Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+
+    </body>
+</html>
+

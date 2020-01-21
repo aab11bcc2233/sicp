@@ -1,0 +1,415 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Lisp概览 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="2_计算过程.html" />
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="1_Lisp概览.html">
+            
+                <a href="1_Lisp概览.html">
+            
+                    
+                    Lisp概览
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="2_计算过程.html">
+            
+                <a href="2_计算过程.html">
+            
+                    
+                    计算过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="3_高阶过程.html">
+            
+                <a href="3_高阶过程.html">
+            
+                    
+                    高阶过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Lisp概览</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#lisp-&#x6982;&#x89C8;"><b></b>Lisp &#x6982;&#x89C8;</a></li></ul></div><a href="#lisp-&#x6982;&#x89C8;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="lisp-&#x6982;&#x89C8;"><a name="lisp-&#x6982;&#x89C8;" class="anchor-navigation-ex-anchor" href="#lisp-&#x6982;&#x89C8;"><i class="fa fa-link" aria-hidden="true"></i></a>Lisp &#x6982;&#x89C8;</h1>
+<p><strong>Tips: &#x6240;&#x6709;&#x7684;&#x56FE;&#x793A;&#x7684;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;&#x4E0D;&#x662F;&#x975E;&#x5E38;&#x4E25;&#x8C28;</strong></p>
+<p>&#x5982;&#x4F55;&#x53BB;&#x5BF9;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;&#x8FDB;&#x884C;&#x5F62;&#x5F0F;&#x5316;&#x7684;&#x8868;&#x8FF0;&#xFF1F;</p>
+<p>&#x5982;&#x4F55;&#x53BB;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#xFF1F;</p>
+<p>&#x7ED3;&#x5408;&#x4E24;&#x8005;&#x53D1;&#x5C55;&#x4E00;&#x5957;&#x5BF9;&#x95EE;&#x9898;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x7684;&#x7CBE;&#x786E;&#x8868;&#x8FF0;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x8BA8;&#x8BBA;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x4F8B;&#x5982; &#xFF08;3+1&#xFF09;* 2 = 8&#xFF0C;&#x8FD9;&#x91CC;&#x7684; 3 &#x548C; 1&#xFF0C;&#x4E0D;&#x6B62;&#x662F;&#x7EAF;&#x6570;&#x5B57;&#xFF0C;&#x6709;&#x53EF;&#x80FD;&#x662F;&#x5411;&#x91CF;&#xFF0C;&#x6216;&#x8005;&#x7535;&#x4FE1;&#x53F7;&#xFF0C;&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x53BB;&#x8BBE;&#x8BA1;&#x4E00;&#x4E2A;&#x5BF9;&#x5404;&#x79CD;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x6570;&#x636E;&#x5747;&#x9002;&#x7528;&#x7684;&#x52A0;&#x6CD5;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x4EBA;&#x4E3A;&#x4EC0;&#x4E48;&#x80FD;&#x6784;&#x5EFA;&#x5927;&#x578B;&#x7CFB;&#x7EDF;&#xFF0C;&#x4E0A;&#x767E;&#x4E07;&#x884C;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x88C5;&#x4E0D;&#x8FDB;&#x8111;&#x888B;&#x7684;&#x3002;&#x56E0;&#x4E3A;&#x80FD;&#x591F;&#x63A7;&#x5236;&#x590D;&#x6742;&#x5EA6;&#x3002;&#x90A3;&#x4E48;&#x63A7;&#x5236;&#x590D;&#x6742;&#x5EA6;&#x7684;&#x65B9;&#x6CD5;&#x6709;&#x4EC0;&#x4E48;&#xFF1F;</p>
+<ol>
+<li>black-box  &#x9ED1;&#x76D2;&#x62BD;&#x8C61;&#x65B9;&#x6CD5;<ul>
+<li>&#x5C06;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x653E;&#x5165;&#x76D2;&#x5B50;&#x91CC;&#x4EE5;&#x9690;&#x85CF;&#x7EC6;&#x8282;&#x3002;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x539F;&#x56E0;&#x662F;&#x4F60;&#x53EF;&#x4EE5;&#x8131;&#x8EAB;&#x53BB;&#x6784;&#x5EFA;&#x66F4;&#x5927;&#x7684;&#x76D2;&#x5B50;&#x3002;</li>
+</ul>
+</li>
+<li>&#x63A7;&#x5236;&#x590D;&#x6742;&#x5EA6;&#x7684;&#x65B9;&#x6CD5; &#xFF08;&#x7EA6;&#x5B9A;&#x63A5;&#x53E3;&#xFF09;<ul>
+<li>&#x6211;&#x4EEC;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x662F;&#xFF0C;&#x6309;&#x7167;&#x7EA6;&#x5B9A;&#x6765;&#x5B9E;&#x73B0;&#x76F8;&#x5E94;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x5E76;&#x4EE5;&#x6B64;&#x5C06;&#x5404;&#x4E2A;&#x90E8;&#x5206;&#x7EC4;&#x5408;&#x8D77;&#x6765;&#x3002;</li>
+</ul>
+</li>
+<li>&#x5B9A;&#x4E49;&#x65B0;&#x7684;&#x8BED;&#x8A00; &#xFF08;&#x5143;&#x8BED;&#x8A00;&#x62BD;&#x8C61;&#xFF09;</li>
+</ol>
+<p>&#x770B;&#x4E00;&#x4E2A;&#x6C42;&#x5E73;&#x65B9;&#x6839;&#x7684;&#x8FC7;&#x7A0B; (&#x7528;&#x5230;&#x4E86;&#x9012;&#x5F52;&#x5B9A;&#x4E49;)&#xFF0C;&#x4E9A;&#x5386;&#x5C71;&#x5927; Heron &#x63D0;&#x51FA;&#x7684;&#x8BA1;&#x7B97;&#x5E73;&#x65B9;&#x6839;&#x7684;&#x65B9;&#x6CD5;</p>
+<ul>
+<li>make a guess G<ul>
+<li>&#x7ED9;&#x4E00;&#x4E2A;&#x731C;&#x6D4B;&#x503C; G</li>
+</ul>
+</li>
+<li>improve the guess by averaging G and X/G<ul>
+<li>&#x901A;&#x8FC7;&#x5BF9; G &#x548C; X/G &#x6C42;&#x5E73;&#x5747;&#x503C;&#x6765;&#x6539;&#x5584;&#x731C;&#x6D4B;&#x503C; G</li>
+</ul>
+</li>
+<li>keep improve the guess until it is good enough<ul>
+<li>&#x6301;&#x7EED;&#x6539;&#x5584;&#x731C;&#x6D4B;&#x503C;&#xFF0C;&#x77E5;&#x9053;&#x5B83;&#x8DB3;&#x591F;&#x597D;</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-lisp"><span class="hljs-comment">; &#x8981;&#x5199;&#x4E00;&#x4E2A;&#x6C42;&#x5E73;&#x65B9;&#x8DDF;&#x7684;&#x8FC7;&#x7A0B;</span>
+<span class="hljs-comment">; &#x5927;&#x81F4;&#x5C31;&#x662F;&#x5BF9;&#x4E8E;&#x8981;&#x6C42;&#x5E73;&#x65B9;&#x6839;&#x7684; x</span>
+<span class="hljs-comment">; &#x7ED9;&#x4E00;&#x4E2A;&#x731C;&#x6D4B;&#x503C; guess</span>
+<span class="hljs-comment">; &#x4E0D;&#x65AD;&#x4FEE;&#x6539; guess&#xFF0C;&#x76F4;&#x5230;&#x6B63;&#x786E;</span>
+
+
+<span class="hljs-comment">; &#x6C42;&#x7EDD;&#x5BF9;&#x503C;</span>
+(<span class="hljs-name">define</span> (<span class="hljs-name">abs</span> x)
+  (<span class="hljs-name">if</span> (<span class="hljs-name">&lt;</span> x <span class="hljs-number">0</span>) 
+         (<span class="hljs-name">-</span> x)
+      x
+  )
+)
+
+<span class="hljs-comment">; &#x6C42;&#x5E73;&#x5747;&#x503C;</span>
+(<span class="hljs-name">define</span> (<span class="hljs-name">average</span> x y) (<span class="hljs-name">/</span> (<span class="hljs-name">+</span> x y) <span class="hljs-number">2</span>))
+
+<span class="hljs-comment">; &#x6C42;&#x5E73;&#x65B9;</span>
+(<span class="hljs-name">define</span> (<span class="hljs-name">square</span> x)
+  (<span class="hljs-name">*</span> x x))
+
+
+(<span class="hljs-name">define</span> (<span class="hljs-name">good-enough</span>? guess x)
+  (<span class="hljs-name">&lt;</span> (<span class="hljs-name">abs</span> (<span class="hljs-name">-</span> (<span class="hljs-name">square</span> guess) x)) 
+  .<span class="hljs-number">001</span>)
+)
+
+(<span class="hljs-name">define</span> (<span class="hljs-name">improve</span> guess x)
+  (<span class="hljs-name">average</span> guess (<span class="hljs-name">/</span> x guess))
+)
+
+(<span class="hljs-name">define</span> (<span class="hljs-name">try</span> guess x)
+  (<span class="hljs-name">if</span> (<span class="hljs-name">good-enough</span>? guess x)
+         guess
+        (<span class="hljs-name">try</span> (<span class="hljs-name">improve</span> guess x) x)
+  )
+)
+
+(<span class="hljs-name">define</span> (<span class="hljs-name">sqrt</span> x)
+  (<span class="hljs-name">try</span> <span class="hljs-number">1</span> x))
+</code></pre>
+<p>&#x5BF9;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x753B;&#x56FE;&#x89E3;&#x91CA;</p>
+<div class="mermaid">
+graph TD;
+sqrt --&gt; try;
+try --&gt; good-enough?;
+try --&gt; improve;
+good-enough? --&gt; abs;
+good-enough? --&gt; square;
+improve --&gt; average;
+try --&gt; try;
+</div>
+
+
+<p>&#x5BF9;&#x4E8E;&#x4E0A;&#x9762;&#x7684;&#x6C42;&#x5E73;&#x65B9;&#x6839;&#x7684;&#x4EE3;&#x7801;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x4E66;&#x5199;&#x65B9;&#x5F0F;&#xFF0C;&#x628A; <code>improve</code>&#x3001;<code>good-enough?</code>&#x3001;<code>try</code> &#x8FD9;&#x51E0;&#x4E2A;&#x65B9;&#x6CD5;&#x653E;&#x5728;&#x4E86; <code>sqrt</code> &#x65B9;&#x6CD5;&#x7684;&#x5185;&#x90E8;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x6784;&#x5EFA;&#x4E86;&#x4E2A;&#x6C42;&#x5E73;&#x65B9;&#x6839;&#x7684;&#x76D2;&#x5B50;&#xFF0C;&#x5B9A;&#x4E00;&#x4E2A;&#x4E86;&#x5757;&#x7ED3;&#x6784;&#xFF08;block structure&#xFF09;&#xFF0C;&#x9690;&#x85CF;&#x4E86;&#x7EC6;&#x8282;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x907F;&#x514D;&#x4ED6;&#x4EBA;&#x5B9A;&#x4E49;&#x540C;&#x540D;&#x65B9;&#x6CD5;&#x9020;&#x6210;&#x6DF7;&#x4E71;&#xFF1A;</p>
+<pre><code class="lang-lisp"><span class="hljs-comment">; &#x8981;&#x5199;&#x4E00;&#x4E2A;&#x6C42;&#x5E73;&#x65B9;&#x8DDF;&#x7684;&#x8FC7;&#x7A0B;</span>
+<span class="hljs-comment">; &#x5927;&#x81F4;&#x5C31;&#x662F;&#x5BF9;&#x4E8E;&#x8981;&#x6C42;&#x5E73;&#x65B9;&#x6839;&#x7684; x</span>
+<span class="hljs-comment">; &#x7ED9;&#x4E00;&#x4E2A;&#x731C;&#x6D4B;&#x503C; guess</span>
+<span class="hljs-comment">; &#x4E0D;&#x65AD;&#x4FEE;&#x6539; guess&#xFF0C;&#x76F4;&#x5230;&#x6B63;&#x786E;</span>
+
+
+<span class="hljs-comment">; &#x6C42;&#x7EDD;&#x5BF9;&#x503C;</span>
+(<span class="hljs-name">define</span> (<span class="hljs-name">abs</span> x)
+  (<span class="hljs-name">if</span> (<span class="hljs-name">&lt;</span> x <span class="hljs-number">0</span>) 
+         (<span class="hljs-name">-</span> x)
+      x
+  )
+)
+
+<span class="hljs-comment">; &#x6C42;&#x5E73;&#x5747;&#x503C;</span>
+(<span class="hljs-name">define</span> (<span class="hljs-name">average</span> x y) (<span class="hljs-name">/</span> (<span class="hljs-name">+</span> x y) <span class="hljs-number">2</span>))
+
+<span class="hljs-comment">; &#x6C42;&#x5E73;&#x65B9;</span>
+(<span class="hljs-name">define</span> (<span class="hljs-name">square</span> x)
+  (<span class="hljs-name">*</span> x x))
+
+
+(<span class="hljs-name">define</span> (<span class="hljs-name">sqrt</span> x)
+  (<span class="hljs-name">define</span> (<span class="hljs-name">improve</span> guess)
+    (<span class="hljs-name">average</span> guess (<span class="hljs-name">/</span> x guess)))
+  (<span class="hljs-name">define</span> (<span class="hljs-name">good-enough</span>? guess)
+    (<span class="hljs-name">&lt;</span> (<span class="hljs-name">abs</span> (<span class="hljs-name">-</span> (<span class="hljs-name">square</span> guess) x)) 
+      .<span class="hljs-number">001</span>))
+  (<span class="hljs-name">define</span> (<span class="hljs-name">try</span> guess)
+    (<span class="hljs-name">if</span> (<span class="hljs-name">good-enough</span>? guess)
+       guess
+      (<span class="hljs-name">try</span> (<span class="hljs-name">improve</span> guess))))
+  (<span class="hljs-name">try</span> <span class="hljs-number">1</span>))
+</code></pre>
+<p>Lisp &#x7684;&#x57FA;&#x672C;&#x5143;&#x7D20;&#x6709; <code>+</code>&#x3001;<code>-</code>&#x3001;<code>*</code>&#x3001;<code>/</code>&#xFF0C;&#x8FD8;&#x662F;&#x6709; <code>23</code>&#x3001;<code>1.738</code>&#x4E4B;&#x7C7B;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x3002;</p>
+<p>&#x6709; <code>if</code>&#x3001;<code>cond</code> &#x6761;&#x4EF6;&#x8BED;&#x53E5;&#xFF0C;<code>()</code> &#x6784;&#x6210;&#x7EC4;&#x5408;&#xFF0C;<code>define</code> &#x7528;&#x6765;&#x62BD;&#x8C61;&#xFF0C;&#x4F8B;&#x5982;&#x7ED9;&#x65B9;&#x6CD5;&#x3001;&#x53D8;&#x91CF;&#x547D;&#x540D;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="2_计算过程.html" class="navigation navigation-next " aria-label="Next page: 计算过程">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Lisp概览","level":"1.2","depth":1,"next":{"title":"计算过程","level":"1.3","depth":1,"path":"docs/2_计算过程.md","ref":"docs/2_计算过程.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchor-navigation-ex","mermaid-gb3","katex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"docs/1_Lisp概览.md","mtime":"2020-01-21T17:11:19.264Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-21T17:19:45.610Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+
+    </body>
+</html>
+
